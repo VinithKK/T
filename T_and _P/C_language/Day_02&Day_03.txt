@@ -1,0 +1,551 @@
+Ex:1 -Strong Number
+------------------
+
+#include <stdio.h>
+
+int main()
+{   int i,n,temp,a,sum=0,fact=1;
+    printf("Enter the Value :");
+    scanf("%d",&n);
+    temp=n;
+    
+    while(temp!=0)
+    {
+        a=temp%10;
+        for(i=1;i<=a;i++)
+        {
+            fact=fact*i;
+        }
+       
+        sum=sum+fact;
+        fact=1;
+        temp=temp/10;
+    }
+   
+    if(sum==n)
+    {
+       printf("\n %d STRONG NUMBER ",sum) ;
+    }
+    else
+    {
+        printf("\n %d NOT A STRONG NUMBER ",sum) ;
+    }
+    
+    return 0;
+}
+
+
+Output:
+--------
+Enter the Value :145
+
+ 145 STRONG NUMBER
+
+-------------------------------------------------------------------------------------------------
+
+EX:2 -Matrix Multiplication
+---------------------------
+
+#include <stdio.h>
+
+int main()
+{
+    int a[30][30],b[30][30],res[30][30],i,j,k;
+     int r1,r2,c1,c2;
+    
+    printf("Enter the row of first Matrix : ");
+    scanf("%d",&r1);
+    
+    printf("Enter the column of first Matrix : ");
+    scanf("%d",&c1);
+    
+    printf("Enter the row of second Matrix : ");
+    scanf("%d",&r2);
+    
+    printf("Enter the column of second Matrix : ");
+    scanf("%d",&c2);
+    
+    
+    if(c1==r2){
+        
+    printf("\n Enter First Matrix Values:");
+    for(i=0;i<r1;i++)
+        {
+        for(j=0;j<c1;j++)
+            {
+                printf("\nEnter %d %d position value: ",(i+1),(j+1));
+                scanf("%d",&a[i][j]);
+            }
+        }
+        
+    printf("\n Enter Second Matrix Values:");
+    for(i=0;i<r2;i++)
+        {
+        for(j=0;j<c2;j++)
+            {
+                printf("\nEnter %d %d position value: ",(i+1),(j+1));
+                scanf("%d",&b[i][j]);
+            }
+        }
+    
+        
+        
+         for(i=0;i<r1;i++)    
+        {    
+            for(j=0;j<c2;j++)    
+            {    
+                res[i][j]=0;    
+                for(k=0;k<c2;k++)    
+                {    
+                res[i][j]+=a[i][k]*b[k][j];    
+                }    
+            }    
+        }    
+
+//result
+printf("\nThe final Matrix is...\n");
+for(i=0;i<r1;i++)
+        {
+        for(j=0;j<c2;j++)
+            {
+              printf("%d ",res[i][j]) ;
+              
+            }
+            printf("\n");
+        }
+                      
+    }   
+    
+    else
+    {
+        printf("\ncant multiply the matrix.");
+    }  
+    
+    return 0;
+}
+
+
+Output:
+--------
+Enter the row of first Matrix : 3
+Enter the column of first Matrix : 3
+Enter the row of second Matrix : 3
+Enter the column of second Matrix : 3
+
+ Enter First Matrix Values:
+Enter 1 1 position value: 1
+
+Enter 1 2 position value: 2
+
+Enter 1 3 position value: 3
+
+Enter 2 1 position value: 4
+
+Enter 2 2 position value: 5
+
+Enter 2 3 position value: 6
+
+Enter 3 1 position value: 7
+
+Enter 3 2 position value: 8
+
+Enter 3 3 position value: 9
+
+ Enter Second Matrix Values:
+
+Enter 1 1 position value: 1
+
+Enter 1 2 position value: 2
+
+Enter 1 3 position value: 3
+
+Enter 2 1 position value: 4
+
+Enter 2 2 position value: 5
+
+Enter 2 3 position value: 6
+
+Enter 3 1 position value: 7
+
+Enter 3 2 position value: 8
+
+Enter 3 3 position value: 9
+
+The final Matrix is...
+30 36 42
+66 81 96
+102 126 150
+
+---------------------------------------------------------------------------------------------------------------
+
+
+Ex-3 String Length (Without inbuilt functions)
+-----------------------------------------------
+
+
+#include <stdio.h>
+
+int main()
+{
+    int i,len=0;
+    char str[20];
+    printf("Enter the String :");
+    scanf("%s",str);
+    
+    for(i=0;str[i]!='\0';i++)
+    {
+        len++;
+    }
+    printf("\n The String length is %d ",len);
+    return 0;
+}
+
+Output:
+--------
+Enter the String :hello
+
+ The String length is 5
+
+--------------------------------------------------------------------------------------------
+
+Ex-4 String copy (Without inbuilt functions)
+-------------------------------------------
+
+
+#include <stdio.h>
+
+int main()
+{
+    int i,len=0;
+    char str[20],cpy[20];
+    printf("Enter the String :");
+    scanf("%s",str);
+    
+    for(i=0;str[i]!='\0';i++)
+    {
+        len++;
+    }
+    for(i=0;i<len;i++)
+    {
+        cpy[i]=str[i];
+    }
+    printf("\n------------------------------");
+    printf("\nEntered string is :%s",str);
+    printf("\nThe copied string is :%s",cpy);
+    
+    return 0;
+}
+
+Output:
+--------
+
+Enter the String :hi
+
+------------------------------
+Entered string is :hi
+The copied string is :hi
+
+
+---------------------------------------------------------------------------------------------------------
+
+Ex-5 String Concatenation (Without inbuilt functions)
+----------------------------------------------------
+
+#include <stdio.h>
+
+int main()
+{
+    int i,a,len1,len2,j=0,k;
+    char str1[20],str2[20];
+    printf("Enter the First String :");
+    scanf("%s",str1);
+    printf("\nEnter the Second String :");
+    scanf("%s",str2);
+    
+    for(i=0;str1[i]!='\0';i++)
+    {
+        len1++;
+    }
+    
+    for(j=0;str2[j]!='\0';j++)
+    {
+        str1[len1++]=str2[j];
+    }
+   str1[len1++]='\0';
+
+    printf("\nThe final o/p is : %s",str1);
+    
+    return 0;
+}
+
+Output:
+--------
+
+Enter the First String :hello
+
+Enter the Second String :world
+
+The final o/p is : helloworld
+
+
+---------------------------------------------------------------------------------------------------------
+
+Ex-5 String Reverse (Without inbuilt functions)
+-------------------------------------------
+
+
+#include <stdio.h>
+
+int main()
+{
+    int i,a,len,end;
+    char str[20],rev[20];
+    printf("Enter the String :");
+    scanf("%s",str);
+    
+    for(i=0;str[i]!='\0';i++)
+    {
+        len++;
+    }
+    end=len-1;
+    for(i=0 ;i<len;i++)
+    {
+        rev[i]=str[end];
+        end--;
+    }
+    printf("\nThe Reverse String is : %s ",rev);
+    return 0;
+}
+
+Output:
+--------
+
+Enter the String :welcome
+
+The Reverse String is : emoclew
+
+---------------------------------------------------------------------------------------------------------
+
+Ex-6 Palindrome in String (Without inbuilt functions)
+----------------------------------------------------
+
+
+#include <stdio.h>
+
+int main()
+{
+    int i,a,len,end,flag=1;
+    char str[20],rev[20];
+    printf("Enter the String :");
+    scanf("%s",str);
+    
+    for(i=0;str[i]!='\0';i++)
+    {
+        len++;
+    }
+    end=len-1;
+    for(i=0 ;i<len;i++)
+    {
+        rev[i]=str[end];
+        end--;
+    }
+    for(i=0;i<len;i++)
+    {
+        if(rev[i]!=str[i])
+        {
+        flag=0;
+        break;
+        }
+    }
+    if(flag==1)
+    {
+          printf("\nGiven String is Palindrome.");
+    }
+    else
+    {
+        printf("\nGiven String is Not a Palindrome.");
+    }
+    return 0;
+}
+
+Output:
+--------
+Enter the String :amma
+
+Given String is Palindrome.
+
+
+
+---------------------------------------------------------------------------------------------------------
+
+Ex-7 To check given matrix is lower triangle or not.
+----------------------------------------------------
+
+#include <stdio.h>
+
+int main()
+{
+    int i,j,arr[30][30],n,count=0,flag=0;
+    printf("Enter the matrix dimension : ");
+    scanf("%d",&n);
+    printf("\nEnter the lower triangle matrix : ");
+    for(i=0;i<n;i++)
+        {
+        for(j=0;j<n;j++)
+            {
+                printf("\nEnter %d %d position value: ",(i+1),(j+1));
+                scanf("%d",&arr[i][j]);
+            }
+        }
+        
+        
+    for(i=0;i<n;i++)
+    {
+        for(j=i+1;j<n;j++)
+        {
+            if(arr[i][j]!=0)
+            {  
+                flag=1;
+                break;
+            }
+        }
+    }
+    
+    printf("\n Given matrix is...\n");
+    for(i=0;i<n;i++)
+        {
+        	for(j=0;j<n;j++)
+			{
+        		printf(" %d",arr[i][j]);
+        	}
+        printf("\n");
+		}
+    
+	
+	
+	if(flag==0)
+    {
+        printf("Lower Triangle Matrix.");
+    }
+    else
+    {
+       printf("Not a Lower Triangle Matrix.");
+    }
+    
+    return 0;
+}
+
+
+Output:
+--------
+
+Enter the matrix dimension : 3
+
+Enter the lower triangle matrix :
+Enter 1 1 position value: 1
+
+Enter 1 2 position value: 0
+
+Enter 1 3 position value: 0
+
+Enter 2 1 position value: 0
+
+Enter 2 2 position value: 1
+
+Enter 2 3 position value: 0
+
+Enter 3 1 position value: 0
+
+Enter 3 2 position value: 0
+
+Enter 3 3 position value: 1
+
+ Given matrix is...
+ 1 0 0
+ 0 1 0
+ 0 0 1
+Lower Triangle Matrix.
+
+
+---------------------------------------------------------------------------------------------------------
+
+Ex-8 Factorial without multiplication and divison(also use sub-function)
+----------------------------------------------------------------------------
+
+#include <stdio.h>
+int fact(int N);
+int main() 
+{	
+	int N,a;
+    printf("Enter the number : ");
+    scanf("%d",&N);
+    a=fact(N);   
+	printf("\n%d",a);
+    return 0;
+}
+
+int fact(int N)
+{
+	int i,j,sum=0,ans;
+	ans = N;
+    for(int i = N - 1; i > 0; i--) 
+        {
+        sum = 0;
+        for (int j = 0; j < i; j++)
+            {
+            	sum += ans;
+            }
+        ans = sum;
+        }
+    return ans;
+}
+
+Output:
+--------
+Enter the number : 5
+
+120
+
+---------------------------------------------------------------------------------------------------------
+
+Ex-9 Duplicate elements in a array
+----------------------------------------------------------------------------
+
+#include<stdio.h>
+int main()
+{
+int i,j,n,a[10]={6,8,3,6,3,5,9,2,1,6}, d[10], k, l=0, flag;
+n=sizeof(a)/sizeof(a[0]); 
+printf("Duplicate elements in array is:\n");
+for(i=0;i<n;i++)
+{
+for(j=i+1;j<n;j++)
+	{
+	if(a[i]==a[j])
+	{
+	flag = 0;
+	for(k=0;k<l;k++) 
+	{
+	if (a[i]==d[k]) 
+	{
+	flag = 1;
+	}	
+	}
+	if(flag == 0) 
+	{
+	d[l++] = a[i];
+	}
+	}
+	}
+	}
+for(i=0;i<l;i++)
+	printf("%d ",d[i]);
+return 0;
+}
+
+
+Output:
+--------
+Duplicate elements in array is:
+6 3
+----------------------------------------------------------------------------------------------------------------------------------

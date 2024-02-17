@@ -1,0 +1,546 @@
+//Vinith K
+
+Ex-1 Right Triangle
+-------------------
+#include <stdio.h>
+
+int main()
+{
+  int i, j, n;
+  printf ("Enter the n value :");
+  scanf ("%d", &n);
+  for (i = 1; i <= n; i++)
+  {
+    for (j = 1; j <= i; j++){
+        printf("* ");
+    }
+      printf("\n");
+     }
+
+      return 0;
+    }
+
+Output:
+------
+Enter the n value :5
+*
+* *
+* * *
+* * * *
+* * * * *
+
+------------------------------------------------------------------------------------
+//Vinith K
+
+Ex-2 Program for given output  
+------------------------------
+
+#include <stdio.h>
+
+int main()
+{
+  int i, j, n;
+  printf ("Enter the n value :");
+  scanf ("%d", &n);
+  for (i = n; i >= 1; i--)
+  {
+    for (j = 1; j <= i; j++){
+        
+        if(i%2==0)
+        {
+        printf("0");
+        }
+        else
+        {
+          printf("1");  
+        }
+    }
+      printf("\n");
+     }
+
+      return 0;
+    }
+
+Output:
+------
+Enter the n value :5
+11111
+0000
+111
+00
+1
+
+
+-------------------------------------------------------------------------------------------------------
+//Vinith K
+
+Ex-3  Diamond Shape Pattern
+------------------------------
+
+#include <stdio.h>
+
+int main()
+{
+   int i, j, n,k;
+  printf ("Enter the n value :");
+  scanf ("%d", &n);
+  for (i = n; 0 <= i; i--)
+  {
+    for (j = 0; j <= i-1; j++)
+    {
+        printf(" ");
+    }
+    for(k=j+1;k<=n;k++)
+    {
+        printf("* ");
+    }
+      printf("\n");
+     }
+     
+     
+      for (i = 0; n >= i; i++)
+  {
+    for (j = 0; j <= i-1; j++)
+    {
+        printf(" ");
+    }
+    for(k=j+1;k<=n;k++)
+    {
+        printf("* ");
+    }
+      printf("\n");
+     }
+
+      return 0;
+    }
+
+Output:
+------
+Enter the n value :5
+
+    *
+   * *
+  * * *
+ * * * *
+* * * * *
+* * * * *
+ * * * *
+  * * *
+   * *
+    *
+------------------------------------------------------------------------------------------------------
+//Vinith K
+
+Ex-4  Left Triangle
+----------------------
+#include <stdio.h>
+
+int main()
+{
+   int i, j, n,k;
+  printf ("Enter the n value :");
+  scanf ("%d", &n);
+  for (i = n; 0 <= i; i--)
+  {
+    for (j = 0; j <= i-1; j++)
+    {
+        printf(" ");
+    }
+    for(k=j+1;k<=n;k++)
+    {
+        printf("*");
+    }
+      printf("\n");
+     }
+     
+      return 0;
+    }
+
+Output:
+------
+Enter the n value :5
+
+    *
+   **
+  ***
+ ****
+*****
+---------------------------------------------------------------------------------------------------------------------
+//Vinith K
+
+Ex-5  Get the array values and print
+-------------------------------------
+#include <stdio.h>
+
+int main()
+{
+  int i, a[20], n;
+  printf ("Enter the n value :");
+  scanf ("%d", &n);
+  for (i =1 ; i<=n ; i++)
+  {
+      printf("\n Enter the %d value : ",i);
+      scanf("%d",&a[i]);
+  }
+  
+  printf("\n Array Values is ....\n");
+  for (i =1 ; i<=n ; i++)
+  {
+      printf("%d ",a[i]);
+      
+  }
+  return 0;
+}
+
+Output:
+------
+
+Enter the n value :3
+
+ Enter the 1 value : 1
+
+ Enter the 2 value : 2
+
+ Enter the 3 value : 3
+
+ Array Values is ....
+1 2 3
+
+---------------------------------------------------------------------------------------------------------------------
+//Vinith K
+
+Ex-6 To find average of array elements. 
+--------------------------------------
+
+#include <stdio.h>
+
+int main()
+{
+  int i, a[20], n,sum=0,avg;
+  printf ("Enter the n value :");
+  scanf ("%d", &n);
+  for (i =1 ; i<=n ; i++)
+  {
+      printf("\n Enter the %d value : ",i);
+      scanf("%d",&a[i]);
+  }
+  
+ 
+  for (i =1 ; i<=n ; i++)
+  {
+      sum=sum+a[i];
+  }
+  avg=sum/n;
+  printf("\n Average value is = %d ",avg);
+  
+  return 0;
+}
+
+Output:
+------
+Enter the n value :4
+
+ Enter the 1 value : 3
+
+ Enter the 2 value : 6
+
+ Enter the 3 value : 9
+
+ Enter the 4 value : 12
+
+ Average value is = 7
+
+---------------------------------------------------------------------------------------------------------------------
+//Vinith K
+
+Ex-7 To find particular number frequency
+-----------------------------------------
+
+#include <stdio.h>
+
+int main()
+{
+  int i, a[20], n,r,count=0;
+  printf ("Enter the n value :");
+  scanf ("%d", &n);
+  for (i =1 ; i<=n ; i++)
+  {
+      printf("\n Enter the %d value : ",i);
+      scanf("%d",&a[i]);
+  }
+  
+  printf("\n Enter the element to find Frequency : ");
+  scanf("%d",&r);
+  
+  for (i =1 ; i<=n ; i++)
+  {
+      if(a[i]==r)
+      {
+        count++;
+      }
+  }
+  printf("\n\n The Frequency for %d number is = %d ",r,count);
+  return 0;
+}
+
+Output:
+------
+
+Enter the n value :5
+
+ Enter the 1 value : 7
+
+ Enter the 2 value : 3
+
+ Enter the 3 value : 5
+
+ Enter the 4 value : 4
+
+ Enter the 5 value : 3
+
+ Enter the element to find Frequency : 3
+
+
+ The Frequency for 3 number is = 2
+
+---------------------------------------------------------------------------------------------------------------------
+//Vinith K
+
+Ex-8 Sorting the Array elements 
+-------------------------------
+#include <stdio.h>
+
+int main()
+{
+  int i, a[20], n,j,temp;
+  printf ("Enter the n value :");
+  scanf ("%d", &n);
+  for (i =1 ; i<=n ; i++)
+  {
+      printf("\n Enter the %d value : ",i);
+      scanf("%d",&a[i]);
+  }
+  
+ 
+  for (i =0 ; i<=n ; i++)
+  {
+     for(j=i+1;j<=n;j++)
+    {
+       if(a[i]>a[j])
+       {
+           temp=a[i];
+           a[i]=a[j];
+           a[j]=temp;
+       }
+      
+    }
+  }
+  
+  printf("\n Array Values in Ascending order ....\n");
+  for (i =1 ; i<=n ; i++)
+  {
+      printf("%d ",a[i]);
+      
+  }
+  
+  
+  return 0;
+}
+
+Output:
+------
+
+Enter the n value :4
+
+ Enter the 1 value : 54
+
+ Enter the 2 value : 23
+
+ Enter the 3 value : 44
+
+ Enter the 4 value : 21
+
+ Array Values in Ascending order ....
+21 23 44 54
+
+---------------------------------------------------------------------------------------------------------------------
+//Vinith K
+
+Ex-9 Print Even and Odd numbers in a array.
+-------------------------------------------
+#include <stdio.h>
+
+int main()
+{
+  int i, a[20], n,even[20],odd[20],j,k;
+  printf ("Enter the n value :");
+  scanf ("%d", &n);
+  for (i =1 ; i<=n ; i++)
+  {
+      printf("\n Enter the %d value : ",i);
+      scanf("%d",&a[i]);
+  }
+  
+  printf("\n Array Values is ....\n");
+  for (i =1 ; i<=n ; i++)
+  {
+     
+     if(a[i]%2==0)
+     {
+         
+         printf("Even number %d ",a[i]);
+        
+     }
+     
+     else
+     {
+         
+        printf("odd number %d ",a[i]);
+        
+     }
+     printf("\n");
+  }
+    
+  return 0;
+}
+
+
+Output:
+------
+Enter the n value :5
+
+ Enter the 1 value : 7
+
+ Enter the 2 value : 2
+
+ Enter the 3 value : 5
+
+ Enter the 4 value : 6
+
+ Enter the 5 value : 8
+
+ Array Values is ....
+odd number 7
+Even number 2
+odd number 5
+Even number 6
+Even number 8
+
+---------------------------------------------------------------------------------------------------------------------
+//Vinith K
+
+Ex-10 Armstrong Number
+----------------------
+
+#include<stdio.h>
+#include<ctype.h>
+int main()
+{
+
+int n,n1,rem,num=0;
+printf("Enter the num:");
+scanf("%d",&n);
+n1=n;
+while(n1!=0){
+rem=n1%10;
+num=num+(rem*rem*rem);
+n1/=10;
+}
+if(num==n)
+{
+printf("\nArmstrong Number.");
+
+}
+else{
+printf("\n Not a Armstrong Number.");
+}
+return 0;
+}
+
+Output:
+------
+
+Enter the num:153
+
+Armstrong Number.
+
+---------------------------------------------------------------------------------------------------------------------
+//Vinith K
+
+Ex-11 Palindrome
+-----------------
+
+#include<stdio.h>
+#include<ctype.h>
+int main()
+{
+
+int n,n1,rem,num=0;
+printf("Enter the num:");
+scanf("%d",&n);
+n1=n;
+while(n1!=0){
+rem=n1%10;
+num=(num*10)+rem;
+n1/=10;
+}
+if(num==n)
+{
+printf("\nPalindrome.");
+
+}
+else{
+printf("\nNot a palindrome.");
+}
+return 0;
+}
+
+Output:
+------
+
+Enter the num:121
+
+Palindrome.
+
+---------------------------------------------------------------------------------------------------------------------
+//Vinith K
+
+Ex-12 Prime Number
+--------------------
+
+#include<stdio.h>
+int main()
+{
+	int i,n,flag=0;
+	printf("Enter number:");
+	scanf("%d",&n);
+	for(i=0;i<n/2;i++)
+	{
+		if(n%i==0)
+		{
+			flag=1;
+			break;
+		}
+		
+	}
+	if(flag==0)
+	{
+		printf("\nNot a Prime Number");
+	}
+	else
+	{
+		printf("\nPrime Number");
+	}
+	
+return 0;
+}
+
+
+Output:
+------
+Enter number:5
+
+Prime Number
+
+---------------------------------------------------------------------------------------------------------------------
+//Vinith K

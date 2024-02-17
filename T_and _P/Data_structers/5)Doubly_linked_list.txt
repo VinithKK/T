@@ -1,0 +1,269 @@
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void create_node();
+void insert_begin();
+void insert_end();
+void insert_mid();
+void delete_begin();
+void delete_end();
+void delete_mid();
+void display();
+
+struct node {
+    int data; 
+    struct node *prev;
+    struct node *next;
+};
+
+struct node *head=NULL;
+
+int main() {
+    printf("Doubly Linked List");
+    printf("------------------\n\n");
+    int choice;
+    do {
+        printf("\n1.Create_Node\n2.Insert_begin\n3.Insert_mid\n4.Insert_end\n5.delete_begin\n6.delete_mid\n7.delete_end\n8.Display\n9.Exit");
+        printf("\n\nEnter your choice : ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+            create_node();   
+            break;
+            
+            case 2:
+            insert_begin(); 
+            break;
+            
+            case 3:
+            insert_mid();
+            break;
+            
+            case 4:
+            insert_end(); 
+            break;
+            
+            case 5:
+            delete_begin();    
+            break;
+            
+            case 6:
+            delete_mid();   
+            break;
+                
+            case 7:
+            delete_end();    
+            break;
+                
+            case 8:
+            display();    
+            break;
+            
+            case 9:
+            exit(0);
+            break;
+                
+            default:
+            printf("!!!Please enter the valid option!!!\n");
+            break;
+        }
+    } while (choice!=9);
+    return 0;
+}
+
+
+
+
+void create_node()
+{
+	struct node *newNode,*temp;
+    int val;
+    newNode = (struct node *)malloc(sizeof(struct node));
+    printf("\nEnter the value : ");
+    scanf("%d",&val);
+	
+	if (head == NULL)
+        {
+            newNode->next = NULL;
+            newNode->prev = NULL;
+            newNode->data = val;
+            head = newNode;
+        }
+    else
+        {
+        	temp=head;
+        	while (temp->next != NULL)
+        	{
+            	temp = temp->next;
+        	}
+        	temp->next = newNode;
+        	newNode->prev = temp;
+        	newNode->next = NULL;
+        	newNode->data = val;
+        }
+	printf("\nNode inserted\n");        
+}
+
+
+
+
+void insert_begin() {
+   
+    struct node *newNode;
+    int val;
+    newNode = (struct node *)malloc(sizeof(struct node));
+    printf("\nEnter the value : ");
+    scanf("%d",&val);
+    newNode->next = head;
+	newNode->prev = NULL;
+    newNode->data = val;
+    head = newNode;
+    printf("\nNode inserted\n");
+    }
+
+
+
+
+void insert_mid() {
+	
+    struct node *ptr = head, *newNode;
+    newNode = (struct node *)malloc(sizeof(struct node));
+	int pos, val;
+    printf("Enter the position to insert: ");
+    scanf("%d",&pos); 
+    printf("Enter the value of the node: ");
+    scanf("%d", &val);
+    newNode->data=val;
+	     
+	for(int i=2;i<pos;i++)
+	{  	
+    ptr = ptr->next;
+  	}
+  	newNode->next=ptr->next;
+  	ptr->next->prev=newNode;
+  	ptr->next=newNode;
+  	newNode->prev=ptr;
+  	
+}
+
+
+
+
+
+void insert_end() 
+{
+	struct node *newNode,*temp;
+    int val;
+    newNode = (struct node *)malloc(sizeof(struct node));
+    printf("\nEnter the value : ");
+    scanf("%d",&val);	
+    temp = head;
+    while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = newNode;
+        newNode->prev = temp;
+        newNode->data = val;
+        newNode->next = NULL;
+    printf("\n Node inserted at last.\n");
+}
+
+
+
+
+void display() 
+{
+    struct node *temp;
+
+    temp = head;
+    if (temp == NULL)
+	{
+		printf("\nList empty!!!");
+	}
+        
+    else
+    {
+        printf("\nList elements : ");
+        while (temp != NULL)
+        {
+            printf("%d ", temp->data);
+            temp = temp->next;
+        }
+    }
+printf("\n\n");
+}
+
+
+
+
+
+void delete_begin() 
+{
+    struct node *temp = head;
+    if(head->next != NULL) 
+		{
+            head = head->next;
+            head->prev = NULL;
+            free(temp);
+            printf("Node deleted.\n");
+        }
+    else 
+		{
+            head = NULL;
+            free(temp);
+            printf("Node deleted.\n");
+        }
+}
+
+
+
+
+
+
+
+void delete_mid() {
+	
+   	struct node *preptr = head , *ptr;
+	int pos;
+    printf("Enter the position to delete : ");
+    scanf("%d",&pos);
+    for(int i=2;i<pos;i++)
+	{  
+    preptr = preptr->next;
+  	}
+  	ptr=preptr->next;
+  	
+  	preptr->next=ptr->next;
+  	ptr->next->prev=preptr;
+  	free(ptr);
+  	printf("\nNode deleted.\n");
+  	//printf("\n\n%d ",preptr->data);
+  //printf("\n\n%d ",ptr->data);
+  	
+}
+    
+
+
+
+void delete_end()
+ {
+    struct node *temp = head;
+        if(temp->next == NULL) 
+		{
+            head = NULL;
+            free(temp);
+            printf("Node deleted.\n");
+        }
+        else 
+		{
+            while(temp->next != NULL) 
+			{
+			temp = temp->next;
+        	}
+        	temp->prev->next = NULL;
+            free(temp);
+        }
+    printf("Node deleted.\n");
+}

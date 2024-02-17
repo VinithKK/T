@@ -1,0 +1,395 @@
+Q-1
+---
+/*Inversion Count
+j & k are the two indices of the array A 
+Condition : j < k & a[j] > a[k]
+*/
+
+#include<stdio.h>
+
+int main()
+{
+	int j,k,count=0;
+	int a[5] = {1,20,6,4,5};
+	for(j=0;j<=k;j++)
+	{
+		for(k=j+1;k<=5;k++)
+		{
+			if(a[j]>a[k])
+			{
+				count++;
+			}
+		}
+	}
+	printf("\nThe Inversion Count : %d",count);
+	return 0;
+}
+
+
+
+/* Output:
+----------------
+The Inversion Count :4 
+*/
+
+----------------------------------------------------------------------------------------
+Q-2
+---
+//Print the Multiple of 10 elements in the array - right side
+
+#include<stdio.h>
+
+int main()
+{
+	int i;
+	int a[10] = {10,12,5,40,30,7,50,9,10};
+	for(i=0;i<=10;i++)
+	{
+		if(a[i]%10!=0)
+		{
+			printf("%d\t",a[i]);
+		}
+	}
+	for(i=0;i<=10;i++)
+	{
+		if(a[i]%10==0)
+		{
+			printf("%d\t",a[i]);
+		}
+	}
+	return 0;
+}
+
+
+
+/* Output:
+-----------------
+12      5       7       9       16      10      40      30      50      10      0
+*/
+
+
+----------------------------------------------------------------------------------------
+Q-3
+---
+//Lower Triangular Matrix - TCS
+
+#include<stdio.h>
+
+int main()
+{
+    int r1,c1,i,j,a[50][50],flag=0;
+    printf("Enter the rows of an 1st matrix:");
+    scanf("%d",&r1);
+    printf("Enter the columns of an 1st matrix:");
+    scanf("%d",&c1);
+    printf("\nEnter the Lower Triangular Matrix");
+    for(i=0;i<r1;i++)
+    {
+        for(j=0;j<c1;j++)
+        {
+            printf("\nEnter [%d,%d] element:",i+1,j+1);
+            scanf("%d",&a[i][j]);
+        }
+    }
+    printf("\nThe Matrix");
+    for(i=0;i<r1;i++)
+    {
+        printf("\n");
+        for(j=0;j<c1;j++)
+        {
+            printf("%d\t",a[i][j]);
+        }
+    }
+    for(i=0;i<r1;i++)
+    {
+        for(j=i+1;j<c1;j++)
+        {
+            if(a[i][j]!=0)
+            {
+                flag=1;
+                break;
+            }
+        }
+    }
+    if(flag==0)
+    {
+        printf("\nThe Matrix is Lower Triangular Matrix");
+    }
+    else
+    {
+        printf("\nThe Matrix is not a Lower Triangular Matrix");
+    }
+    return 0;
+}
+
+
+
+/* Output:
+----------------------
+Enter the rows of an 1st matrix:4
+Enter the columns of an 1st matrix:4
+
+Enter the Lower Triangular Matrix
+Enter [1,1] element:1
+
+Enter [1,2] element:0
+
+Enter [1,3] element:0
+
+Enter [1,4] element:0
+
+Enter [2,1] element:5
+
+Enter [2,2] element:7
+
+Enter [2,3] element:0
+
+Enter [2,4] element:0
+
+Enter [3,1] element:2
+
+Enter [3,2] element:5
+
+Enter [3,3] element:3
+
+Enter [3,4] element:0
+
+Enter [4,1] element:8
+
+Enter [4,2] element:5
+
+Enter [4,3] element:4
+
+Enter [4,4] element:1
+
+The Matrix
+1       0       0       0
+5       7       0       0
+2       5       3       0
+8       5       4       1
+The Matrix is Lower Triangular Matrix
+*/
+
+
+
+----------------------------------------------------------------------------------------
+Q-4
+----
+//Fact of the number without multiplication - TCS
+
+#include<stdio.h>
+
+int fact(int n)
+{
+    int i,j;
+    int sum;
+    int ans = n;
+    for(i=n-1;i>0;i--)
+    {
+        sum=0;
+        for(j=0;j<i;j++)
+        {
+            sum +=ans;
+        }
+        ans = sum;
+    }
+    return sum;
+}
+
+int main()
+{
+    int n;
+    printf("Enter the number:");
+    scanf("%d",&n);
+    printf("The factorial of the number is: %d",fact(5));
+    return 0;
+}
+
+
+
+/* Output:
+-------------------
+Enter the number:5
+The factorial of the number is: 120
+*/
+
+----------------------------------------------------------------------------------------
+Q-5
+----
+
+/* For hiring a car, a travel agency charges R1 rupees per hour for first N hours and then R2 rupees per hour.Given the total time of travel in minutes is X.
+The task is to find the total travelling cost in rupees.
+Note,While converting minutes into hours,ceiling value should be considered as the total number of hours.
+For example : if the total travelling time is 90 minutes.(i.e), 1.5 hours,it must be considered as 2 hours.
+I/P: 
+20 - value of R1
+4 - value of N in hours
+40 - value of R2
+300 - value of X in minutes
+O/P:
+120
+Explaination:
+Total Travelling hours = 300 / 60 = 5 hours
+Rupees 20 / hours for first 4 hours = 20 * 4 = 80 rupees
+Rupees 40 / hours for 5th hour = 40 * 1 = 40 rupees
+Hence,the total cost = 80 + 40 = 120 rupees
+*/
+
+#include<stdio.h>
+#include<math.h>
+
+int main()
+{
+	int R1,N,R2,X,travel_time,i,cost=0;
+	R1 = 20;
+	R2 = 40;
+	N = 4;
+	X = 300;
+	travel_time = (X / 60);
+	for(i=1;i<=N;i++)
+	{
+		cost = cost + 20;
+	}
+	for(i=1;i<=travel_time-N;i++)
+	{
+		cost = cost + 40;
+	}
+	printf("\nTotal Cost is %d",cost);
+	return 0;
+}
+
+
+
+/* Output:
+----------------
+Total Cost is 120
+*/
+
+----------------------------------------------------------------------------------------
+Q-6
+----
+
+/* An automobile company manufactures both a 2Wheeler and 4Wheeler.A company manager
+wants to make the production of both types of vehicle according to the given data below:
+1st data : Total no.of vehicle(4 & 2 Wheelrs)  = V
+2nd data : Total no.of Wheels = W
+The task is to find how 2WH as well as 4WH needd to manufacture as per the given data.
+I/P
+200 -> V
+540 -> W
+O/P
+2 Wheelers - 130
+4 Wheelers - 70
+Explaination
+130 + 70 = 200 vehicle
+(70 * 4) + (130 * 2) = 540 Wheels
+constraints
+W<2 & W%2!=0 & V>=W ==> Imvalid data 
+*/
+
+#include<stdio.h>
+
+int main()
+{
+    int v, w, x, y;
+    printf("Enter the v value :");
+    scanf("%d",&v);
+    printf("\nEnter the w value :");
+    scanf("%d",&w);
+    if(w%2!=0||w<2||v>=w)
+    {
+        printf("\nInvalid Inputs!!!");
+    }
+    else
+    {
+        x = (w / 2) - v;
+        y = v - x;
+        printf("Two Wheelers : %d",y);
+        printf("\nFour Wheelers : %d",x);
+    }
+    return 0;
+}
+
+
+
+/* Output:
+----------------
+Enter the v value :200
+
+Enter the w value :540
+Two Wheelers : 130
+Four Wheelers : 70
+*/
+
+----------------------------------------------------------------------------------------
+Q-7
+----
+
+#include <stdio.h>
+
+int main() 
+{
+    int i,len1=0,len2=0;
+    char str[100];
+    printf("Enter the String :  ");
+    scanf("%s",str);
+    for(i=0;str[i]!='\0';i++)
+    {
+        if(str[i]=='*')
+        {
+            len1 = len1 + 1;
+        }
+        else if(str[i]=='#')
+        {
+            len2 = len2 + 1;
+        }
+    }
+    printf("\nLength of the '*' is : %d",len1);
+    printf("\nLength of the '#' is : %d",len2);
+    if(len1==len2)
+    {
+        printf("\n0");
+    }
+    else if(len1>len2)
+    {
+        printf("\n1");
+    }
+    else
+    {
+        printf("\n-1");
+    }
+    return 0;
+}
+
+
+
+/* Output:
+---------------
+Enter the String :  ***###
+
+Length of the '*' is : 3
+Length of the '#' is : 3
+0
+*/
+
+----------------------------------------------------------------------------------------
+Q-8
+---
+
+#include<stdio.h>
+
+int main()
+{
+	int a =10;
+	printf("%d %d %d %d %d",++a,a++,++a,a++,++a);
+	return 0;
+}
+
+
+
+/* Output:
+------------------
+15 13 15 11 15
+*/
+
+------------------------------------------------------------------------------------

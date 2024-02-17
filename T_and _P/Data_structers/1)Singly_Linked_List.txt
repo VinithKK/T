@@ -1,0 +1,512 @@
+
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+struct node *head=NULL;
+struct node *createNode(struct node *);
+struct node *insert_begin(struct node *);
+struct node *insert_end(struct node *);
+struct node *insert_mid(struct node *);
+struct node *delete_begin(struct node *);
+struct node *delete_end(struct node *);
+struct node *delete_mid(struct node *);
+struct node *traversal(struct node *);
+struct node *sort(struct node *);
+
+
+int main() {
+   printf("Singly_Linked_List\n");
+   printf("---------------------\n\n");	
+    int choice;
+    do
+    {   printf("\n------------------");
+        printf("\n1.Create_Node\n2.Insert_beg\n3.Insert_mid\n4.Insert_end\n5.delete_begin\n6.delete_mid\n7.delete_end\n8.traversal\n9.Sort\n10.Exit\n");
+        printf("------------------\n");
+        printf("\nEnter your choice : ");
+        scanf("%d",&choice);
+    
+        switch(choice)
+        {
+            case 1:
+            head=createNode(head);
+            break;
+            
+            case 2:
+            head=insert_begin(head);
+            break;
+        
+            case 3:
+            head=insert_mid(head);
+            break;
+            
+            case 4:
+            head=insert_end(head);
+            break;
+            
+            
+            case 5:
+            head=delete_begin(head);
+            break;
+            
+            
+            case 6:
+            head=delete_mid(head);
+            break;
+            
+            
+            case 7:
+            head=delete_end(head);
+            break;
+            
+            
+            case 8:
+            head=traversal(head);
+            break;
+            
+            case 9:
+            head=sort(head);
+            break;
+            
+            case 10:
+            exit(0);
+            break;
+            
+            default:
+            printf("\nPlease Enter the valid option.");
+        }
+    }while(choice!=10);
+    
+    return 0;
+}
+
+
+struct node *createNode(struct node *head)
+{
+    int val;
+    printf("\nEnter value : ");
+    scanf("%d",&val);
+    struct node *newNode ;
+    newNode=(struct node*)malloc(sizeof(struct node));
+    
+    newNode->data=val;
+    newNode->next=NULL;
+
+    if(head==NULL)
+    {
+        head=newNode;
+    }
+    else
+    {
+        struct node *current =head;
+        while(current->next!=NULL)
+        {
+            current=current->next;
+        }
+        current->next=newNode;
+    }
+return head;
+}
+
+struct node *insert_begin(struct node *head)
+{
+    int val;
+    printf("\nEnter value : ");
+    scanf("%d",&val);
+    struct node *newNode ;
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=val;
+    newNode->next=head;
+    head=newNode;
+return head;    
+}
+
+
+
+struct node *insert_mid(struct node *head)
+{
+    int val,pos,i;
+    printf("\nEnter value : ");
+    scanf("%d",&val);
+    printf("\nEnter the position : ");
+    scanf("%d",&pos);
+    struct node *newNode ;
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=val;
+    
+    struct node *temp =head;
+    for(i=2;i<pos;i++)
+     {
+        if(temp->next!=NULL)
+        {
+            temp=temp->next;
+        } 
+     }
+     newNode->next=temp->next;
+     temp->next=newNode;
+return head;     
+}
+
+
+
+struct node *insert_end(struct node *head)
+{
+    int val;
+    printf("\nEnter value : ");
+    scanf("%d",&val);
+    struct node *newNode ;
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=val;
+    newNode->next=NULL;
+    struct node *temp =head;
+        while(temp->next!=NULL)
+        {
+            temp=temp->next;
+        } 
+        temp->next=newNode;
+return head;
+}
+
+
+
+struct node *delete_begin(struct node *head)
+{
+    struct node *temp=head;
+    head=head->next;
+    free(temp);
+return head;
+}
+
+struct node *delete_mid(struct node *head)
+{
+    int pos,i;
+    printf("\nEnter the position : ");
+    scanf("%d",&pos);
+    struct node *preptr =head,*cur_ptr;
+    for(i=2;i<pos;i++)
+     {
+        if(preptr->next!=NULL)
+        {
+            preptr=preptr->next;
+        } 
+     }
+     cur_ptr=preptr->next;
+     preptr->next=cur_ptr->next;
+	// printf("\n %d",cur_ptr->data);
+	free(cur_ptr);
+return head;    
+}
+
+
+
+struct node *delete_end(struct node *head)
+{
+    struct node *ptr =head,*temp;
+        while(ptr->next->next!=NULL)
+        {
+            ptr=ptr->next;
+        } 
+        temp=ptr->next;
+        ptr->next=NULL;
+	free(temp);
+return head;
+}
+
+
+struct node *traversal(struct node *head)
+{
+    if(head==NULL)
+    {
+        printf("\n\nList empty.");
+    }
+    else
+    {
+     struct node *temp =head;
+     printf("\nElements are....");
+     while(temp!=NULL)
+        {
+            printf("%d ",temp->data);
+            temp=temp->next;
+        }
+        printf("\n\n");
+    }
+return head;
+}
+
+
+
+struct node *sort(struct node *head)
+{
+    if(head==NULL)
+    {
+        printf("\n\nList empty.");
+    }
+    
+    else
+    {
+        struct node *cur1, *cur2;
+        int temp;
+        cur1 = head;
+        while(cur1 -> next != NULL)
+            {
+            cur2 = cur1 -> next;
+            while(cur2 != NULL)
+                {
+                if(cur1 -> data > cur2 -> data)
+                    {
+                    temp = cur1 -> data;
+                    cur1 -> data = cur2 -> data;
+                    cur2 -> data = temp;
+                    }
+                    cur2 = cur2 -> next;
+                    }
+            cur1 = cur1 -> next;
+            }
+    }
+traversal(head);    
+return head;
+}
+
+
+Output:
+-------
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 1
+Enter value : 10
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 1
+Enter value : 20
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 8
+Elements are....10 20 
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 2
+Enter value : 5
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 8
+Elements are....5 10 20 
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 3
+Enter value : 15
+Enter the position : 3
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 8
+Elements are....5 10 15 20 
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 4
+Enter value : 25
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 8
+Elements are....5 10 15 20 25 
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 5
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 8
+Elements are....10 15 20 25 
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 7
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 8
+Elements are....10 15 20 
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 6
+Enter the position : 2
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 8
+Elements are....10 20 
+
+----------------
+1.Create_Node
+2.Insert_beg
+3.Insert_mid
+4.Insert_endv
+5.delete_begin
+6.delete_mid
+7.delete_end
+8.traversal
+9.Exit
+----------------
+
+Enter your choice : 9

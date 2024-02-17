@@ -1,0 +1,266 @@
+//after delete all elements ....
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+struct node *head=NULL;
+struct node *createNode(struct node *);
+struct node *insert_begin(struct node *);
+struct node *insert_end(struct node *);
+struct node *insert_mid(struct node *);
+struct node *delete_begin(struct node *);
+struct node *delete_end(struct node *);
+struct node *delete_mid(struct node *);
+struct node *traversal(struct node *);
+//struct node *sort(struct node *);
+
+
+int main() {
+
+    printf("Circularly Singled Linked List\n");
+    printf("-------------------------------\n\n");	
+    int choice;
+    do
+    {   printf("\n------------------");
+        printf("\n1.Create_Node\n2.Insert_beg\n3.Insert_mid\n4.Insert_end\n5.delete_begin\n6.delete_mid\n7.delete_end\n8.traversal\n9.(Sort)\n10.Exit\n");
+        printf("------------------\n");
+        printf("\nEnter your choice : ");
+        scanf("%d",&choice);
+    
+        switch(choice)
+        {
+            case 1:
+            head=createNode(head);
+            break;
+            
+            case 2:
+            head=insert_begin(head);
+            break;
+        
+            case 3:
+            head=insert_mid(head);
+            break;
+            
+            case 4:
+            head=insert_end(head);
+            break;
+            
+            
+            case 5:
+            head=delete_begin(head);
+            break;
+            
+            
+            case 6:
+            head=delete_mid(head);
+            break;
+            
+            
+            case 7:
+            head=delete_end(head);
+            break;
+            
+            
+            case 8:
+            head=traversal(head);
+            break;
+            
+            case 9:
+           // head=sort(head);
+            break;
+            
+            case 10:
+            exit(0);
+            break;
+            
+            default:
+            printf("\nPlease Enter the valid option.");
+        }
+    }while(choice!=10);
+    
+    return 0;
+}
+
+
+struct node *createNode(struct node *head)
+{
+    int val;
+    printf("\nEnter value : ");
+    scanf("%d",&val);
+    struct node *newNode ;
+    newNode=(struct node*)malloc(sizeof(struct node));
+    
+    newNode->data=val;
+
+    if(head==NULL)
+    {
+        head=newNode;
+        newNode->next=head;
+    }
+    else
+    {
+        struct node *current =head;
+        while(current->next!=head)
+        {
+            current=current->next;
+        }
+        current->next=newNode;
+        newNode->next=head;
+    }
+return head;
+}
+
+
+
+
+
+
+struct node *insert_begin(struct node *head)
+{
+    int val;
+    printf("\nEnter value : ");
+    scanf("%d",&val);
+    struct node *newNode,*temp=head ;
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=val;
+    while(temp->next!=head)
+    {
+    	temp=temp->next;
+	}
+	newNode->next=head;
+    head=newNode;
+	temp->next=head;
+return head;    
+}
+
+
+
+struct node *insert_mid(struct node *head)
+{
+    int val,pos,i;
+    printf("\nEnter value : ");
+    scanf("%d",&val);
+    printf("\nEnter the position : ");
+    scanf("%d",&pos);
+    struct node *newNode ;
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=val;
+    
+    struct node *temp =head;
+    for(i=2;i<pos;i++)
+     {
+        if(temp->next!=head)
+        {
+            temp=temp->next;
+        } 
+     }
+     newNode->next=temp->next;
+     temp->next=newNode;
+return head;     
+}
+
+
+
+struct node *insert_end(struct node *head)
+{
+    int val;
+    printf("\nEnter value : ");
+    scanf("%d",&val);
+    struct node *newNode ;
+    newNode=(struct node*)malloc(sizeof(struct node));
+    newNode->data=val;
+    struct node *temp =head;
+        while(temp->next!=head)
+        {
+            temp=temp->next;
+        } 
+        temp->next=newNode;
+        newNode->next=head;
+return head;
+}
+
+
+
+struct node *delete_begin(struct node *head)
+{
+    struct node *temp=head,*ptr=head;
+    while(temp->next!=head)
+    {
+    	temp=temp->next;
+	}
+	 head=head->next;
+	temp->next=head;
+    free(ptr);
+return head;
+}
+
+struct node *delete_mid(struct node *head)
+{
+    int pos,i;
+    printf("\nEnter the position : ");
+    scanf("%d",&pos);
+    struct node *preptr =head,*temp;
+    for(i=2;i<pos;i++)
+     {
+        if(preptr->next!=head)
+        {
+            preptr=preptr->next;
+        } 
+     }
+    temp=preptr->next;
+    preptr->next=temp->next;
+    free(temp);
+    
+return head;    
+}
+
+
+
+struct node *delete_end(struct node *head)
+{
+    struct node *temp =head,*ptr;
+    	if(temp->next == NULL) 
+		{
+            head = NULL;
+            free(temp);
+            printf("Node deleted.\n");
+        }
+    	else
+    	{
+        while(temp->next->next!=head)
+        {
+            temp=temp->next;
+        } 
+        
+		ptr=temp->next;
+        temp->next=head;
+        free(ptr);
+	}	
+return head;
+}
+
+
+struct node *traversal(struct node *head)
+{
+    if(head==NULL)
+    {
+        printf("\n\nList empty.");
+    }
+    else
+    {
+     struct node *temp =head;
+     printf("\nElements are....");
+     while(temp->next!=head)
+        {
+            printf("%d ",temp->data);
+            temp=temp->next;
+        }
+        printf("%d ",temp->data);
+        printf("\n\n");
+    }
+return head;
+}

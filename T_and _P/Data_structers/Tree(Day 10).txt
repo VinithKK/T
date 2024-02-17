@@ -1,0 +1,327 @@
+Ex-01  Tree Travarsal
+---------------------
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node 
+{
+	int item;
+	struct node *left;
+	struct node *right;
+};
+
+
+struct node* create_node(value)
+{
+	struct node*newNode =(struct node*)malloc(sizeof(struct node));
+	newNode->item=value;
+	newNode->left=NULL;
+	newNode->right=NULL;
+	
+	return newNode;
+}
+
+
+struct node *insert_left(struct node*root,int value)
+{
+	
+	root->left=create_node(value);
+return root->left;
+}
+
+struct node *insert_right(struct node*root,int value)
+{
+	root->right=create_node(value);
+return root->right;
+}
+
+
+struct node *preorder(struct node *root)
+{
+	if(root==NULL)return;
+	printf("%d->",root->item);
+	preorder(root->left);
+	preorder(root->right);
+	return ;
+}
+
+struct node *inorder(struct node *root)
+{
+	if(root==NULL)return;
+	inorder(root->left);
+	printf("%d->",root->item);
+	inorder(root->right);
+	return ;
+}
+
+
+struct node *postorder(struct node *root)
+{
+	if(root==NULL)return;
+	postorder(root->left);
+	postorder(root->right);
+	printf("%d->",root->item);
+	return ;
+}
+
+
+int main()
+{
+	struct node *root=create_node(5);
+	
+	insert_left(root,3);
+	insert_right(root,7);
+	
+	printf("\nPreOrder Traversal   : ");
+	preorder(root);
+	
+	printf("\nInOrder Traversal    : ");
+	inorder(root);
+	
+	printf("\nPostOrder Traversal  : ");
+	postorder(root);
+	
+	return 0;
+}
+
+
+/*
+OUTPUT
+-----
+PreOrder Traversal   : 5->3->7->
+InOrder Traversal    : 3->5->7->
+PostOrder Traversal  : 3->7->5->
+
+*/
+
+
+-------------------------------------------------------------------------------
+
+Ex-02  Calculate sum value for all elments in the Binary Tree
+------------------------------------------------------------
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int sum=0;
+struct node 
+{
+	int item;
+	struct node *left;
+	struct node *right;
+};
+
+
+struct node* create_node(value)
+{
+	struct node*newNode =(struct node*)malloc(sizeof(struct node));
+	newNode->item=value;
+	newNode->left=NULL;
+	newNode->right=NULL;
+	
+	return newNode;
+}
+
+
+struct node *insert_left(struct node*root,int value)
+{
+	
+	root->left=create_node(value);
+return root->left;
+}
+
+struct node *insert_right(struct node*root,int value)
+{
+	root->right=create_node(value);
+return root->right;
+}
+
+
+struct node *inorder(struct node *root)
+{
+	if(root==NULL)return;
+	inorder(root->left);
+	printf("%d->",root->item);
+	sum=sum+root->item;
+	inorder(root->right);
+	return ;
+}
+
+int main()
+{
+	struct node *root=create_node(5);
+	
+	insert_left(root,3);
+	insert_right(root,7);
+	
+	printf("\nInOrder Traversal    : ");
+	inorder(root);
+	
+	printf("\nSum =%d",sum);
+	return 0;
+}
+
+
+/*
+OUTPUT:
+InOrder Traversal    : 3->5->7->
+Sum =15
+*/
+
+
+------------------------------------------------------------------------------------
+
+
+Ex-03 Binary search tree
+----------------------------
+
+
+#include<stdio.h>
+#include<conio.h>
+//#include<process.h>
+#include<malloc.h>
+struct tree
+{
+int data;
+struct tree *lchild;
+struct tree *rchild;
+}*t,*temp;
+
+int element;
+void inorder(struct tree *);
+void preorder(struct tree *);
+void postorder(struct tree *);
+struct tree * create(struct tree *, int);
+//struct tree * find(struct tree *, int);
+struct tree * insert(struct tree *, int);
+//struct tree * del(struct tree *, int);
+//struct tree * findmin(struct tree *);
+//struct tree * findmax(struct tree *);
+int main()
+{
+int ch;
+do
+{
+printf("\n\t\t\tBINARY SEARCH TREE");
+printf("\n\t\t\t****** ****** ****");
+printf("\nMain Menu\n");
+printf("\n1.Create\n2.Insert\n3.Inorder\n4.Preorder\n5.Postorder\n6.Exit\n");
+printf("\nEnter ur choice :");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:
+printf("\nEnter the data:");
+scanf("%d",&element);
+t=create(t,element);
+inorder(t);
+break;
+
+case 2:
+printf("\nEnter the data:");
+scanf("%d",&element);
+t=insert(t,element);
+inorder(t);
+break;
+
+case 3:
+inorder(t);
+break;
+
+case 4:
+preorder(t);
+break;
+
+case 5:
+postorder(t);
+break;
+
+case 6:
+exit(0);
+break;
+}
+}while(ch!=6);
+return 0;
+}
+
+
+
+
+struct tree * create(struct tree *t, int element)
+{
+t=(struct tree *)malloc(sizeof(struct tree));
+t->data=element;
+t->lchild=NULL;
+t->rchild=NULL;
+return t;
+}
+
+
+struct tree *insert(struct tree *t,int element)
+{
+if(t==NULL)
+{
+t=(struct tree *)malloc(sizeof(struct tree));
+t->data=element;
+t->lchild=NULL;
+t->rchild=NULL;
+return t;
+}
+else
+{
+if(element<t->data)
+{
+t->lchild=insert(t->lchild,element);
+}
+else
+if(element>t->data)
+{
+t->rchild=insert(t->rchild,element);
+}
+else
+if(element==t->data)
+{
+printf("element already present\n");
+}
+return t;
+}
+}
+
+
+void inorder(struct tree *t)
+{
+if(t==NULL)
+return;
+else
+{
+inorder(t->lchild);
+printf("\t%d",t->data);
+inorder(t->rchild);
+}
+}
+
+void preorder(struct tree *t)
+{
+if(t==NULL)
+return;
+else
+{
+printf("\t%d",t->data);
+preorder(t->lchild);
+preorder(t->rchild);
+}
+}
+
+void postorder(struct tree *t)
+{
+if(t==NULL)
+return;
+else
+{
+postorder(t->lchild);
+postorder(t->rchild);
+printf("\t%d",t->data);}}
+
+
+--------------------------------------------------------------------------
